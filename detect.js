@@ -1,22 +1,11 @@
-// detect.js
+window.onload = function() {
+  const email = "teacher@student.evergreenps.org";
 
-function checkEmailRedirect(email) {
-  // Normalize to lowercase just in case
-  const e = email.toLowerCase();
-
-  // If it ends with student.evergreenps.org → do NOT redirect
-  if (e.endsWith("evergreenps.org")) {
-    console.log("Safe domain: no redirect.");
-    return;
+  if (email.endsWith("evergreenps.org")) {
+    window.location.href = "https://sites.google.com/student.evergreenps.org/rebel/";
+  } else if (email.endsWith("student.evergreenps.org")) {
+    window.location.href = "https://myapps.classlink.com/";
+  } else {
+    console.log("No matching domain, staying here.");
   }
-
-  // If it ends with evergreenps.org → redirect
-  if (e.endsWith("student.evergreenps.org")) {
-    console.log("Redirecting...");
-    window.location.href = "https://hacker-114.github.io/red-alert/";
-    return;
-  }
-
-  // Otherwise do nothing
-  console.log("Domain not matched.");
-}
+};
