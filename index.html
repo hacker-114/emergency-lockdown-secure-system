@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Redirect</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="admin.js"></script>
+  <script src="detect.js"></script>
+</head>
+<body>
+  <h1>Access Portal</h1>
+  <p>Click the button below to continue:</p>
+
+  <!-- Password box -->
+  <input type="password" id="passwordBox" placeholder="Enter admin password">
+  
+  <!-- Single button -->
+  <button onclick="redirect()">Go</button>
+
+  <script>
+    function redirect() {
+      const entered = document.getElementById("passwordBox").value;
+      if (entered === ADMIN_PASSWORD) {
+        // Correct password → Link B
+        window.location.href = "https://sites.google.com/student.evergreenps.org/rebel/admin-secure-bypass/";
+      } else {
+        // Wrong or empty → Link A
+        window.location.href = "https://sites.google.com/student.evergreenps.org/rebellion/";
+      }
+    }
+
+    // Optional: run detection with a sample email
+    detectUserDomain("student@evergreenps.org");
+  </script>
+</body>
+</html>
