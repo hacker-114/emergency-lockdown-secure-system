@@ -1,13 +1,15 @@
-// Demo function: checks if an email ends with a certain domain
-function detectUserDomain(email) {
-  if (email.endsWith("student.evergreenps.org")) {
-    // Redirect if domain matches
-    window.location.href = "https://myapps.classlink.com/";
-  } else {
-    // Otherwise, stay on the page or do nothing
-    console.log("Domain not matched, staying here.");
-  }
-}
+window.onload = function() {
+  let input = "evergreenps.org"; // could be just domain or full email
 
-// Example usage: you could call this with a test email
-// detectUserDomain("someone@evergreenps.org");
+  // If it contains "@", treat it like an email
+  if (input.includes("@")) {
+    if (input.endsWith("evergreenps.org")) {
+      window.location.href = "https://myapps.classlink.com/";
+    }
+  } else {
+    // Otherwise, compare directly as a domain
+    if (input === "evergreenps.org") {
+      window.location.href = "https://myapps.classlink.com/";
+    }
+  }
+};
