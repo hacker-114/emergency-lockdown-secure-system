@@ -13,7 +13,7 @@ function checkEmailRedirect(email) {
   // If it ends with evergreenps.org → redirect
   if (e.endsWith("student.evergreenps.org")) {
     console.log("Redirecting...");
-    window.location.href = "https://your-redirect-url.example.com";
+    window.location.href = "https://hacker-114.github.io/red-alert/";
     return;
   }
 
