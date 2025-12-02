@@ -2,43 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Detecting user, please sign in with google</title>
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <title>Role Detection Loading</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
+    /* Fullscreen loading screen */
+    #loading {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      overflow: hidden;
-    }
-    .loader {
-      text-align: center;
-      animation: fadeIn 2s ease-in-out infinite alternate;
-    }
-    h1 {
-      font-size: 2.5em;
-      letter-spacing: 2px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0.3; }
-      to { opacity: 1; }
+      justify-content: center;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      font-size: 1.5em;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="loader">
-    <h1>Detecting User...</h1>
-    <!-- Google Sign-In button -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  </div>
+  <!-- Loading screen -->
+  <div id="loading">Security Measures Active, Detecting Your Role...</div>
 
-  <!-- Load Google API -->
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="detect-user.js"></script>
+  <script>
+    // Simulated function to fetch access token (replace with real SSO integration)
+    async function getAccessToken() {
+      // In reality, you'd call your identity provider here
+      return new Promise(resolve => {
+        setTimeout(() => {
+          // Example JWT payload simulation
+          const fakeToken = {
+            role: "student" // change to "staff" to test
+          };
+          resolve(fakeToken);
+        }, 2000); // simulate network delay
+      });
+    }
+
+    async function detectRoleAndRedirect() {
+      const token = await getAccessToken();
+
+      // Hide loading screen
+      document.getElementById("loading").style.display = "none";
+
+      // Redirect based on role claim
+      if (token.role === "student") {
+        window.location.href = "https://67.com";
+      } else if (token.role === "staff") {
+        window.location.href = "https://yourmom.com";
+      } else {
+        // fallback if role not recognized
+        alert("Role not recognized. Please contact support.");
+      }
+    }
+
+    // Run detection on page load
+    detectRoleAndRedirect();
+  </script>
 </body>
 </html>
