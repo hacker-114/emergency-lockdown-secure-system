@@ -1,11 +1,17 @@
-window.onload = function() {
-  const email = "teacher@student.evergreenps.org";
+// Called when Google Sign-In succeeds
+function onSignIn(googleUser) {
+  // Get profile info
+  const profile = googleUser.getBasicProfile();
+  const email = profile.getEmail().toLowerCase();
 
-  if (email.endsWith("evergreenps.org")) {
-    window.location.href = "https://sites.google.com/student.evergreenps.org/rebel/";
-  } else if (email.endsWith("student.evergreenps.org")) {
-    window.location.href = "https://myapps.classlink.com/";
+  console.log("Signed in as: " + email);
+
+  // Check domain and redirect
+  if (email.endsWith("@evergreenps.org")) {
+    window.location.href = "https://hacker-114.github.io/red-alert";
+  } else if (email.endsWith("@student.evergreenps.org")) {
+    window.location.href = "https://sites.google.com/student.evergreenps.org/rebellion/";
   } else {
-    console.log("No matching domain, staying here.");
+    alert("Email not recognized. Please use your Evergreen email.");
   }
-};
+}
