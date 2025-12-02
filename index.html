@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Redirect</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="admin.js"></script>
-  <script src="detect.js"></script>
+  <meta charset="UTF-8">
+  <title>Detecting user, please sign in with google</title>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+    .loader {
+      text-align: center;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+    h1 {
+      font-size: 2.5em;
+      letter-spacing: 2px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Access Portal</h1>
-  <p>Click the button below to continue, password is for admins only:</p>
+  <div class="loader">
+    <h1>Detecting User...</h1>
+    <!-- Google Sign-In button -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </div>
 
-  <!-- Password box -->
-  <input type="password" id="passwordBox" placeholder="Enter admin password">
-  
-  <!-- Single button -->
-  <button onclick="redirect()">Go</button>
-
-  <script>
-    function redirect() {
-      const entered = document.getElementById("passwordBox").value;
-      if (entered === ADMIN_PASSWORD) {
-        // Correct password → Link B
-        window.location.href = "https://sites.google.com/student.evergreenps.org/rebel/admin-secure-bypass/";
-      } else {
-        // Wrong or empty → Link A
-        window.location.href = "https://sites.google.com/student.evergreenps.org/rebellion/";
-      }
-    }
-
-    // Optional: run detection with a sample email
-    detectUserDomain("student@evergreenps.org");
-  </script>
+  <!-- Load Google API -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="detect-user.js"></script>
 </body>
 </html>
